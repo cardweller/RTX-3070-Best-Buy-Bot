@@ -24,6 +24,7 @@ while not isComplete:
         )
     except:
         driver.refresh()
+        print ("out of stock - refreshing")
         continue
 
     print("Add to cart button found")
