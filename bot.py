@@ -10,7 +10,9 @@ PATH = "C:\Program Files (x86)\ChromeDriver\chromedriver.exe"
 
 driver = webdriver.Chrome(PATH)
 
-RTX3070LINK1 = "https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-ti-8gb-gddr6x-pci-express-4-0-graphics-card-dark-platinum-and-black/6465789.p?skuId=6465789"
+RTX3070LINK1 = "https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442"
+RTX3070LINK2 = "https://www.bestbuy.com/site/gigabyte-geforce-rtx-3070-8g-gddr6-pci-express-4-0-graphics-card-black/6437912.p?skuId=6437912"
+XBOXONETEST = "https://www.bestbuy.com/site/microsoft-xbox-one-s-1tb-console-bundle-white/6415222.p?skuId=6415222"
 
 driver.get(RTX3070LINK1)
 
@@ -35,7 +37,9 @@ while not isComplete:
         # go to cart and begin checkout as guest
         driver.get("https://www.bestbuy.com/cart")
 
-        checkoutBtn = driver.find_element_by_class_name("btn-lg")
+        checkoutBtn = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/main/div/div[2]/div[1]/div/div/span/div/div[2]/div[1]/section[2]/div/div/div[3]/div/div[1]/button"))
+        )
         checkoutBtn.click()
         print("Successfully added to cart - beginning check out")
 
@@ -51,7 +55,9 @@ while not isComplete:
         pwField.send_keys(info.password)
 
         # click sign in button
-        signInBtn = checkoutBtn = driver.find_element_by_class_name("btn-lg")
+        signInBtn = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/section/main/div[1]/div/div/div/div/form/div[3]/button"))
+        )
         signInBtn.click()
         print("Signing in")
 
@@ -76,3 +82,6 @@ while not isComplete:
         continue
 
 print("Order successfully placed")
+
+
+
